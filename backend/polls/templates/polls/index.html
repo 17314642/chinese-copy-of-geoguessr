@@ -1,0 +1,53 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Simple Map</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}" />
+    <script type="module" src="{% static 'polls/main.js' %}"></script>
+  </head>
+  <body>
+    <div id="select-city">
+        <select id="select-city-chooser">
+            <option>Санкт-Петербург</option>
+            <option>Пенза</option>
+            <option>Россия</option>
+        </select>
+<!--
+        <div style="background-color: white">
+            <button id="random-test-btn">Generate random points</button>
+            <label>Number of points: <span id="number-of-points">5</span></label>
+            <input type="range" min="5" max="64" value="5" step="1" oninput="document.getElementById('number-of-points').innerHTML = this.value;" id="random-test-number-of-calls" />
+        </div>
+-->
+    </div>
+    <div class="main-flex-container">
+        <div id="panorama"></div>
+        <center id="resize-slider">
+            <img height="8px" src="{% static 'polls/arrow.png' %}" />
+        </center>
+        <div id="map"></div>
+        <div id="results-flex-container" style="display: none">
+            <span>Расстояние до точки: </span>
+            <span id="distance-from-point">10</span>
+            <span>км</span>
+        </div>
+        <button id="guess-btn" style="background-color: gray">Угадать</button>
+        <button id="next-btn" style="display: none">Следующее место</button>
+    </div>
+
+    <!-- 
+     The `defer` attribute causes the callback to execute after the full HTML
+     document has been parsed. For non-blocking uses, avoiding race conditions,
+     and consistent behavior across browsers, consider loading using Promises
+     with https://www.npmjs.com/package/@googlemaps/js-api-loader.
+    -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=ENTER_API_KEY_HERE&callback=initMap&v=weekly"
+      defer
+    ></script>
+  </body>
+</html>
